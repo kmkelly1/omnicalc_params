@@ -24,17 +24,39 @@ class CalculationsController < ApplicationController
         # :c_number amount
         @interest_rate = params["a_number"].to_f / 100
         @years = params["b_number"].to_f
-        @loan_amount = params["c_number"]
+        @loan_amount = params["c_number"].to_f
+        # @number_of_payments = @years * -12
+        
+        # @monthly_interest_rate = @interest_rate / 12
+        # @numerator = @monthly_interest_rate * @loan_amount
+        
+        # @divisor = 1 + @monthly_interest_rate
+        # @divisor = @divisor ** @number_of_payments
+        # @divisor = 1 - @divisor
+        
+        # @number_of_payments = @years * 12
+        # @number_of_payments.to_f
+        # @monthly_interest_rate = (@interest_rate) / 12
+        # @one_plus_monthly = @monthly_interest_rate + 1
+        # @monthly_number_of_payments = @one_plus_monthly**@number_of_payments
+        # @numerator = @monthly_number_of_payments * @monthly_interest_rate
+        # @divisor = @monthly_number_of_payments- 1
+        
         
         @number_of_payments = @years * 12
         @number_of_payments.to_f
-        @monthly_interest_rate = (@interest_rate) / 12
+        @monthly_interest_rate = (@interest_rate / 100) / 12
         @one_plus_monthly = @monthly_interest_rate + 1
         @monthly_number_of_payments = @one_plus_monthly**@number_of_payments
         @numerator = @monthly_number_of_payments * @monthly_interest_rate
         @divisor = @monthly_number_of_payments- 1
         
-        @monthly_payment = @loan_amount * ( @numerator / @divisor)
+        @monthly_payment_2 = @loan_amount * ( @numerator / @divisor)
+        
+        @interest_rate = @interest_rate.round(4)
+        @monthly_payment_2 = @monthly_payment_2.round(2)
+        
+        # @monthly_payment =  @numerator / @divisor
         
         render ("calculations/flexible_payment_template.html.erb")
     end
@@ -74,6 +96,9 @@ class CalculationsController < ApplicationController
         @divisor = @monthly_number_of_payments- 1
         
         @monthly_payment_2 = @principal * ( @numerator / @divisor)
+        
+        @monthly_payment_2 = @monthly_payment_2.round(2)
+        @interest_rate = @interest_rate.round(4)
         
         render("calculations/payment_results_template.html.erb")
     end
