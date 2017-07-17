@@ -53,7 +53,7 @@ class CalculationsController < ApplicationController
         
         @monthly_payment_2 = @loan_amount * ( @numerator / @divisor)
         
-        @interest_rate = @interest_rate.round(4)
+        @interest_rate = @interest_rate.round(2)
         @monthly_payment_2 = @monthly_payment_2.round(2)
         
         # @monthly_payment =  @numerator / @divisor
