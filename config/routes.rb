@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get("/square/new", { :controller => "calculations", :action => "square_form"})
   get("/square/results", { :controller => "calculations", :action => "process_square"})
   
+  get("square_root_form", { :controller => "calculations", :action => "square_root_form"})
+  get("square_root/results", { :controller => "calculations", :action => "process_square_root"})
+  
   get("/payment/new", { :controller => "calculations", :action => "payment_form"})
   get("/payment/results", { :controller => "calculations", :action => "process_payment"})
   
