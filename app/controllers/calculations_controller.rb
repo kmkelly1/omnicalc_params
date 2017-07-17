@@ -3,7 +3,7 @@ class CalculationsController < ApplicationController
         # the incoming parameters for this action look like {"a_number" => "5"}
         # Rail's stores that has in a variable called params
         
-        @user_number = params["a_number"].to_i
+        @user_number = params["a_number"].to_f
         @squared_number = @user_number**2
         
         render("calculations/flexible_square_template.html.erb")
@@ -68,8 +68,9 @@ class CalculationsController < ApplicationController
     
     def process_square
         
-        @user_number = params["the_user_number"].to_i
+        @user_number = params["the_user_number"].to_f
         @squared_number = @user_number**2
+        @squared_number = @squared_number.round(4)
         
         render("calculations/square_results_template.html.erb")
     end
