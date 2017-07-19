@@ -112,7 +112,7 @@ class CalculationsController < ApplicationController
         @monthly_payment_2 = @principal * ( @numerator / @divisor)
         
         @monthly_payment_2 = @monthly_payment_2.round(2)
-        @interest_rate = @interest_rate.round(4)
+        @interest_rate = @interest_rate.round(2)
         
         render("calculations/payment_results_template.html.erb")
     end
